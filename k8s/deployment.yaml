@@ -17,3 +17,27 @@ spec:
           image: bisrat1/ci-cd-demo:latest
           ports:
             - containerPort: 3000
+          env:
+            - name: APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: APP_NAME
+
+            - name: APP_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: APP_ENV
+
+            - name: WELCOME_MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: WELCOME_MESSAGE
+
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: DB_PASSWORD

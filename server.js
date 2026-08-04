@@ -5,8 +5,13 @@ app.get("/",(req,res)=>{
   res.send("Hello CI/CD")
 });
 
-app.get("/status",(req,res)=>{
-  res.json({status:"ok"})
+app.get("/", (req, res) => {
+  res.send(`
+    App Name: ${process.env.APP_NAME}
+    Environment: ${process.env.APP_ENV}
+    Message: ${process.env.WELCOME_MESSAGE}
+    DB Password: ${process.env.DB_PASSWORD}
+  `);
 });
 
 const PORT = process.env.PORT || 3000;
