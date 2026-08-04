@@ -1,0 +1,35 @@
+name: kubernetes CI/CD
+
+on:
+  push:
+    branch: ["main"]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        uses: docker build -t ${{secret.DOCKER_USERNAME}}/ci-cd-demo:${{github.sha}} .
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push Docker image
+        run: docker push ${{secret.DOCKER_USERNAME }}/ci-cd-demo:${{github.sha}}
+
+      - name: Update Kubernetes manifest
+        run: |
+          sed -i "s|image:.*|image: ${{ secret.DOCKER_USERNAME}}/ci-cd-demo:${{github.sha}}|"k8s/deployment
+      
+      - name: Push Docker image
+        uses: actions/upload-artifact@v3
+        with:
+          name: k8s-files
+          path: k8s/
