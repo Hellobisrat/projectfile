@@ -1,11 +1,11 @@
 const express = require("express");
 const app = express();
 
-app.get("/",(req,res)=>{
-  res.send("Hello CI/CD")
+app.get("/", (req, res) => {
+  res.send("Hello from API service");
 });
 
-app.get("/", (req, res) => {
+app.get("/info", (req, res) => {
   res.send(`
     App Name: ${process.env.APP_NAME}
     Environment: ${process.env.APP_ENV}
@@ -14,6 +14,11 @@ app.get("/", (req, res) => {
   `);
 });
 
-const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, ()=>console.log(`Server running on port ${PORT}`));
+// const PORT = process.env.PORT || 3000;
+
+// app.listen(PORT, ()=>console.log(`Server running on port ${PORT}`));
+
+app.listen(3001, () => {
+  console.log("API running on port 3001");
+});

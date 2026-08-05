@@ -5,6 +5,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx
   rules:
     - host: ci-demo.local
       http:
@@ -24,3 +25,20 @@ spec:
                 name: api-demo-service
                 port:
                   number: 3001
+
+          - path: /admin
+            pathType: Prefix
+            backend:
+              service:
+                name: admin-service
+                port:
+                  number: 3002
+
+          - path: /users
+            pathType: Prefix
+            backend:
+                service:
+                  name: users-service
+                  port:
+                    number: 3003
+
