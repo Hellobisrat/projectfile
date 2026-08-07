@@ -6,6 +6,5 @@ spec:
   selector:
     app: api-demo
   ports:
-    - protocol: TCP
-      port: 3001
+    - port: 3001
       targetPort: 3001

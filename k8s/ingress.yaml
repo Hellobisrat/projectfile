@@ -16,7 +16,7 @@ spec:
               service:
                 name: ci-demo-service
                 port:
-                  number: 3000
+                  number: 3004
 
           - path: /api
             pathType: Prefix
@@ -37,8 +37,15 @@ spec:
           - path: /users
             pathType: Prefix
             backend:
-                service:
-                  name: users-service
-                  port:
-                    number: 3003
+              service:
+                name: users-service
+                port:
+                  number: 3003
 
+          - path: /auth
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-service
+                port:
+                  number: 3005

@@ -1,0 +1,11 @@
+{
+  "name":"ci-cd-demo",
+  "version": "1.0.0",
+  "main": "ci-demo.js",
+  "scripts": {
+    "start": "node ci-demo.js"
+  },
+  "dependencies": {
+    "express":"^4.18.2"
+  }
+}

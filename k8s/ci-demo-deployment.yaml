@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-demo
+  name: ci-demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: api-demo
+      app: ci-demo
   template:
     metadata:
       labels:
-        app: api-demo
+        app: ci-demo
     spec:
       containers:
-        - name: api-demo
-          image: bisrat1/api-demo:latest
+        - name: ci-demo
+          image: bisrat1/ci-demo:latest
           ports:
-            - containerPort: 3001
+            - containerPort: 3004
